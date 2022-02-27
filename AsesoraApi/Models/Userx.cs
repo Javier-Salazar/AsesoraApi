@@ -35,6 +35,10 @@ namespace AsesoraApi.Models
         [Display(Name = "Contraseña")]
         public String userx_password { get; set; }
 
+        [Required]
+        [RegularExpression(@"^(N|S){1}$", ErrorMessage = "Estatus inválido")]
+        public Char userx_remember { get; set; }
+
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Teléfono")]
         public String userx_phone { get; set; }
@@ -89,6 +93,7 @@ namespace AsesoraApi.Models
         public String userx_mother_lastname { get; set; }
         public String userx_email { get; set; }
         public String userx_password { get; set; }
+        public Char userx_remember { get; set; }
         public String userx_phone { get; set; }
         public Char userx_type { get; set; }
         public Char userx_istmp_password { get; set; }
