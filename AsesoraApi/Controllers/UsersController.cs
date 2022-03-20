@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+#nullable enable
 
 namespace AsesoraApi.Controllers
 {
@@ -42,12 +43,13 @@ namespace AsesoraApi.Controllers
         }
 
         // GET api/<UsersController>/{id}
-        [HttpGet("{id}", Name = "GetUser")]
-        public async Task<ActionResult<Userx>> Get(String id)
+        [HttpGet("{id?}/{email?}", Name = "GetUser")]
+        public async Task<ActionResult<Userx>> Get(String? id, String? email)
         {
             try
             {
-                var user = await context.Userx.FirstOrDefaultAsync(code => code.userx_code == id);
+                var user = await context.Userx.FirstOrDefaultAsync(code => code.userx_code == id ||
+                  code.userx_email == email);
 
                 if (user == null)
                 {
@@ -70,6 +72,7 @@ namespace AsesoraApi.Controllers
             {
                 var hash = HashPassword.Hash(userx.userx_password);
                 userx.userx_password = hash.password;
+                userx.userx_salt = hash.Salt;
 
                 if (userx.userx_image.Length > 39300000) // Máximo de 5 MB
                 {
@@ -102,6 +105,7 @@ namespace AsesoraApi.Controllers
                 {
                     var hash = HashPassword.Hash(userx.userx_password);
                     userx.userx_password = hash.password;
+                    userx.userx_salt = hash.Salt;
 
                     if (userx.userx_image.Length > 39300000) // Máximo de 5MB
                     {

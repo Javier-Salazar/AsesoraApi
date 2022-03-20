@@ -41,7 +41,7 @@ namespace AsesoraApi
             {
                 options.AddPolicy(name: "AsesoraCors", builder =>
                 {
-                    builder.WithOrigins("");
+                    builder.AllowAnyOrigin();
                     builder.AllowAnyMethod();
                     builder.AllowAnyHeader();
                 });
