@@ -43,13 +43,12 @@ namespace AsesoraApi.Controllers
         }
 
         // GET api/<UsersController>/{id}
-        [HttpGet("{id?}/{email?}", Name = "GetUser")]
-        public async Task<ActionResult<Userx>> Get(String? id, String? email)
+        [HttpGet("{id}", Name = "GetUser")]
+        public async Task<ActionResult<Userx>> Get(String id)
         {
             try
             {
-                var user = await context.Userx.FirstOrDefaultAsync(code => code.userx_code == id ||
-                  code.userx_email == email);
+                var user = await context.Userx.FirstOrDefaultAsync(code => code.userx_code == id);
 
                 if (user == null)
                 {
