@@ -69,10 +69,6 @@ namespace AsesoraApi.Controllers
         {
             try
             {
-                var hash = HashPassword.Hash(userx.userx_password);
-                userx.userx_password = hash.password;
-                userx.userx_salt = hash.Salt;
-
                 if (userx.userx_image.Length > 39300000) // Máximo de 5 MB
                 {
                     return BadRequest("La imagen excede el tamaño permitido");
@@ -102,10 +98,6 @@ namespace AsesoraApi.Controllers
                 }
                 else if (userx.userx_code == id)
                 {
-                    var hash = HashPassword.Hash(userx.userx_password);
-                    userx.userx_password = hash.password;
-                    userx.userx_salt = hash.Salt;
-
                     if (userx.userx_image.Length > 39300000) // Máximo de 5MB
                     {
                         return BadRequest("La imagen excede el tamaño permitido");
