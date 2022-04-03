@@ -35,7 +35,7 @@ namespace AsesoraApi.Controllers
                                         on Student.student_career equals Career.career_code
                                       join Major in context.Major
                                         on Student.student_major equals Major.major_code
-                                      where Userx.userx_type == 'N' && Userx.userx_status == 'A'
+                                      //where Userx.userx_type == 'N' && Userx.userx_status == 'A'
                                       select new
                                     {
                                           Student.student_code,

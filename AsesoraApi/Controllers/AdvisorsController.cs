@@ -29,7 +29,7 @@ namespace AsesoraApi.Controllers
                 var advisors = await (from Advisor in context.Advisor
                                       join Userx in context.Userx
                                         on Advisor.advisor_code equals Userx.userx_code
-                                      where Userx.userx_type == 'A' && Userx.userx_status == 'A'
+                                      where Userx.userx_type == 'A' //&& Userx.userx_status == 'A'
                                       select new
                                       {
                                           Advisor.advisor_code,
