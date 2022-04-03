@@ -43,11 +43,11 @@ namespace AsesoraApi.Controllers
                                        on Advise.advise_building equals Building.building_code
                                      join Classroom in context.Classroom
                                        on Advise.advise_classroom equals Classroom.classroom_code
-                                     where UserStudent.userx_status == 'A' && UserStudent.userx_type == 'N'
-                                       && Student.student_status == 'A' && Subjectx.subjectx_status == 'A'
-                                       && UserAdvisor.userx_status == 'A' && UserAdvisor.userx_type == 'A'
-                                       && Advisor.advisor_status == 'A' && School.school_status == 'A'
-                                       && Building.building_status == 'A'
+                                     //where UserStudent.userx_status == 'A' && UserStudent.userx_type == 'N'
+                                     //  && Student.student_status == 'A' && Subjectx.subjectx_status == 'A'
+                                     //  && UserAdvisor.userx_status == 'A' && UserAdvisor.userx_type == 'A'
+                                     //  && Advisor.advisor_status == 'A' && School.school_status == 'A'
+                                     //  && Building.building_status == 'A'
                                      select new
                                      {
                                          Advise.advise_code,
