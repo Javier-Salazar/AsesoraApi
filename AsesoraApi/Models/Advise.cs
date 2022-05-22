@@ -55,6 +55,9 @@ namespace AsesoraApi.Models
 
         [DisplayFormat(NullDisplayText = "-")]
         public String advise_comments { get; set; }
+        
+        [Range(0, 5)]
+        public int advise_rating { get; set; }
 
         [Required]
         [RegularExpression(@"^(A|C|S){1}$", ErrorMessage = "Estatus inválido")]
