@@ -43,11 +43,6 @@ namespace AsesoraApi.Controllers
                                        on Advise.advise_building equals Building.building_code
                                      join Classroom in context.Classroom
                                        on Advise.advise_classroom equals Classroom.classroom_code
-                                     //where UserStudent.userx_status == 'A' && UserStudent.userx_type == 'N'
-                                     //  && Student.student_status == 'A' && Subjectx.subjectx_status == 'A'
-                                     //  && UserAdvisor.userx_status == 'A' && UserAdvisor.userx_type == 'A'
-                                     //  && Advisor.advisor_status == 'A' && School.school_status == 'A'
-                                     //  && Building.building_status == 'A'
                                      select new
                                      {
                                          Advise.advise_code,
@@ -58,6 +53,7 @@ namespace AsesoraApi.Controllers
                                          StudentEmail = UserStudent.userx_email,
                                          StudentPhone = UserStudent.userx_phone,
                                          StudentImage = UserStudent.userx_image,
+                                         StudentStatus = UserStudent.userx_status,
                                          Student.student_semester,
                                          Advise.advise_topic,
                                          Advise.advise_subject,
@@ -71,6 +67,7 @@ namespace AsesoraApi.Controllers
                                          AdvisorEmail = UserAdvisor.userx_email,
                                          AdvisorPhone = UserAdvisor.userx_phone,
                                          AdvisorImage = UserAdvisor.userx_image,
+                                         AadvisorStatus = UserAdvisor.userx_status,
                                          Advise.advise_school,
                                          School.school_name,
                                          Advise.advise_building,
@@ -83,6 +80,7 @@ namespace AsesoraApi.Controllers
                                          Advise.advise_modality,
                                          Advise.advise_url,
                                          Advise.advise_comments,
+                                         Advise.advise_rating,
                                          Advise.advise_status
                                      }).ToListAsync();
 
@@ -117,47 +115,45 @@ namespace AsesoraApi.Controllers
                                       on Advise.advise_building equals Building.building_code
                                     join Classroom in context.Classroom
                                       on Advise.advise_classroom equals Classroom.classroom_code
-                                    where UserStudent.userx_status == 'A' && UserStudent.userx_type == 'N'
-                                      && Student.student_status == 'A' && Subjectx.subjectx_status == 'A'
-                                      && UserAdvisor.userx_status == 'A' && UserAdvisor.userx_type == 'A'
-                                      && Advisor.advisor_status == 'A' && School.school_status == 'A'
-                                      && Building.building_status == 'A'
                                     select new
                                     {
                                         Advise.advise_code,
-                                        Advise.advise_student,
-                                        StudentName = UserStudent.userx_name,
-                                        StudentLastName = UserStudent.userx_lastname,
-                                        StudentLastMotherName = UserStudent.userx_mother_lastname,
-                                        StudentEmail = UserStudent.userx_email,
-                                        StudentPhone = UserStudent.userx_phone,
-                                        StudentImage = UserStudent.userx_image,
-                                        Student.student_semester,
-                                        Advise.advise_topic,
-                                        Advise.advise_subject,
-                                        Subjectx.subjectx_name,
-                                        Subjectx.subjectx_career,
-                                        Subjectx.subjectx_major,
-                                        Advise.advise_advisor,
-                                        AdvisorName = UserAdvisor.userx_name,
-                                        AdvisorLastName = UserAdvisor.userx_lastname,
-                                        AdvisorLastMotherName = UserAdvisor.userx_mother_lastname,
-                                        AdvisorEmail = UserAdvisor.userx_email,
-                                        AdvisorPhone = UserAdvisor.userx_phone,
-                                        AdvisorImage = UserAdvisor.userx_image,
-                                        Advise.advise_school,
-                                        School.school_name,
-                                        Advise.advise_building,
-                                        Building.building_name,
-                                        Advise.advise_classroom,
-                                        Classroom.classroom_name,
-                                        Advise.advise_date_request,
-                                        Advise.advise_date_start,
-                                        Advise.advise_date_ends,
-                                        Advise.advise_modality,
-                                        Advise.advise_url,
-                                        Advise.advise_comments,
-                                        Advise.advise_status
+                                         Advise.advise_student,
+                                         StudentName = UserStudent.userx_name,
+                                         StudentLastName = UserStudent.userx_lastname,
+                                         StudentLastMotherName = UserStudent.userx_mother_lastname,
+                                         StudentEmail = UserStudent.userx_email,
+                                         StudentPhone = UserStudent.userx_phone,
+                                         StudentImage = UserStudent.userx_image,
+                                         StudentStatus = UserStudent.userx_status,
+                                         Student.student_semester,
+                                         Advise.advise_topic,
+                                         Advise.advise_subject,
+                                         Subjectx.subjectx_name,
+                                         Subjectx.subjectx_career,
+                                         Subjectx.subjectx_major,
+                                         Advise.advise_advisor,
+                                         AdvisorName = UserAdvisor.userx_name,
+                                         AdvisorLastName = UserAdvisor.userx_lastname,
+                                         AdvisorLastMotherName = UserAdvisor.userx_mother_lastname,
+                                         AdvisorEmail = UserAdvisor.userx_email,
+                                         AdvisorPhone = UserAdvisor.userx_phone,
+                                         AdvisorImage = UserAdvisor.userx_image,
+                                         AadvisorStatus = UserAdvisor.userx_status,
+                                         Advise.advise_school,
+                                         School.school_name,
+                                         Advise.advise_building,
+                                         Building.building_name,
+                                         Advise.advise_classroom,
+                                         Classroom.classroom_name,
+                                         Advise.advise_date_request,
+                                         Advise.advise_date_start,
+                                         Advise.advise_date_ends,
+                                         Advise.advise_modality,
+                                         Advise.advise_url,
+                                         Advise.advise_comments,
+                                         Advise.advise_rating,
+                                         Advise.advise_status
                                     }).FirstOrDefaultAsync(code => code.advise_code == id);
 
                 if (advise == null)
